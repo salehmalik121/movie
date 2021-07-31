@@ -35,7 +35,7 @@ class _MovieAppState extends State<MovieApp> {
 
   loadData() async {
     var apiCall = await http.get(
-        Uri.parse("https://www.omdbapi.com/?s=batman&page=1&apikey=2c8219b0"));
+        Uri.parse("https://www.omdbapi.com/?s=Marvel&page=1&apikey=2c8219b0"));
 
     if (apiCall.statusCode == 200) {
       var rawData = jsonDecode(apiCall.body);
@@ -49,6 +49,7 @@ class _MovieAppState extends State<MovieApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(canvasColor: Colors.grey),
         home: Scaffold(
             appBar: AppBar(
               title: Text("Movie App"),

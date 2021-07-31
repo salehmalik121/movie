@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:movie/models/movies.dart';
@@ -31,19 +32,69 @@ class Display extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Card(
+      child: Row(
+        children: [
+          Flexible(
+            flex: 1,
+            child: SizedBox(
+                width: 160,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(movie.poster),
+                  ),
+                )),
+          ),
+          Expanded(
+            flex: 2,
+            child: title(movie: movie),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: ElevatedButton(
+                  onPressed: () {}, child: Icon(CupertinoIcons.heart_fill)),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class title extends StatelessWidget {
+  const title({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(width: 150, child: Image.network(movie.poster)),
-        Column(
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text(
+            movie.title,
+            textScaleFactor: 1.3,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                movie.title,
-                textScaleFactor: 1.3,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                movie.year,
+                style: TextStyle(fontSize: 18),
               ),
-            )
+            ),
           ],
         )
       ],
