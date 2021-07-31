@@ -49,6 +49,10 @@ class _MovieAppState extends State<MovieApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(body: Container(child: Movieswidget(movies: _movies))));
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text("Movie App"),
+            ),
+            body: Container(child: Movieswidget(movies: _movies))));
   }
 }

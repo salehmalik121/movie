@@ -14,9 +14,39 @@ class Movieswidget extends StatelessWidget {
         itemCount: movies.length,
         itemBuilder: (context, index) {
           final movie = movies[index];
-          return Scaffold(
-            body: Container(height: 200, child: Text(movie.title)),
+          return ListTile(
+            title: Display(movie: movie),
           );
         });
+  }
+}
+
+class Display extends StatelessWidget {
+  const Display({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 150, child: Image.network(movie.poster)),
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                movie.title,
+                textScaleFactor: 1.3,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        )
+      ],
+    );
   }
 }
